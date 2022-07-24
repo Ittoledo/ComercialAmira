@@ -176,7 +176,7 @@ namespace Presentation
                     try
                     {
                         cn.Open();
-                        string query = "delete from producto where id_producto=" + listAdmin.SelectedItems[0].Text;
+                        string query = "update 'producto' set id_producto='" + listAdmin.SelectedItems[0].Text + "', 'deleted_at'=" + System.DateTime.Now;
                         cn.ExecuteReader(query);
                         cn.Close();
                         MessageBox.Show("Artículo Eliminado");
