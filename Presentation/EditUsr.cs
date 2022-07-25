@@ -122,7 +122,7 @@ namespace Presentation
                             "`id_tipo_usuario`='" + tipoUsr.SelectedValue + "'," +
                             "`nombre_usuario`='" + nombre.Text + "'," +
                             "`apellido_usuario`='" + apellido.Text +
-                            " WHERE rut_usuario='" + rutUsr.Text + "'";
+                            "' WHERE rut_usuario='" + rutUsr.Text + "'";
                         cn.ExecuteReader(query);
                         cn.Close();
                         f1ref.actualizaLista();

@@ -78,7 +78,7 @@ namespace Presentation
                                 }
 
                                 UserView userView = new UserView();
-                                userView.load(usrTextBox.Text);
+                                userView.id = rut;
                                 userView.Show();
                             }
                         }

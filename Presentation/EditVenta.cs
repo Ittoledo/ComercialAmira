@@ -12,21 +12,22 @@ using MySql.Data.MySqlClient;
 
 namespace Presentation
 {
-    public partial class EditCompra : Form
+    public partial class EditVenta : Form
     {
-        public EditCompra()
+        public EditVenta()
         {
             InitializeComponent();
         }
-        public ListView compra;
-        public ViewCompras f1ref;
+
+        public ListView venta;
+        public VentasView f1ref;
         Connection cn = new Connection();
 
 
         private void EditProd_Shown(object sender, EventArgs e) //When the edit product card is shown is filled with the selected one from the list
         {
-            precio.Text = compra.SelectedItems[0].SubItems[5].Text;
-            cantidad.Text = compra.SelectedItems[0].SubItems[6].Text;
+            precio.Text = venta.SelectedItems[0].SubItems[5].Text;
+            cantidad.Text = venta.SelectedItems[0].SubItems[6].Text;
         }
 
         private bool validacionUpdate()
@@ -49,17 +50,17 @@ namespace Presentation
 
         private void aceptEdit_Click(object sender, EventArgs e)
         {
-            string id_compra = compra.SelectedItems[0].SubItems[0].Text;
-            string rut_proveedor = compra.SelectedItems[0].SubItems[3].Text;
-            string codigo_producto = compra.SelectedItems[0].SubItems[1].Text;
+            string id_venta = venta.SelectedItems[0].SubItems[0].Text;
+            string rut_usuario = venta.SelectedItems[0].SubItems[3].Text;
+            string codigo_producto = venta.SelectedItems[0].SubItems[1].Text;
             try
             {
                 if (validacionUpdate())
                 {
                     cn.Open();
-                    string query = "UPDATE `compra_producto` SET " +
-                        "`precio_compra`='" + precio.Text + "'," +
-                        "`cantidad`='" + cantidad.Text + "' where id_compra =" + id_compra + " and rut_proveedor='" + rut_proveedor+ "' and codigo_producto= " + codigo_producto;
+                    string query = "UPDATE `venta_producto` SET " +
+                        "`precio_venta`='" + precio.Text + "'," +
+                        "`cantidad`='" + cantidad.Text + "' where id_compra =" + id_venta + " and rut_proveedor='" + rut_usuario + "' and codigo_producto= " + codigo_producto;
                     cn.ExecuteReader(query);
                     f1ref.actualizar();
                     cn.Close();
@@ -111,26 +112,6 @@ namespace Presentation
             {
                 e.Handled = true;
             }
-
-        }
-
-        private void precio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cantidad_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

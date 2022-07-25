@@ -66,6 +66,48 @@ namespace Presentation
                 MessageBox.Show("Error al cargar productos");
             }
         }
+        private void loadStock()
+        {
+            try
+            {
+                editBtn.Text = "Editar";
+                label2.Visible = false;
+                price.Visible = false;
+                addBtn.Text = "Agregar";
+                remove.Visible = false;
+                add.Visible = false;
+                listAdmin2.Visible = false;
+                add.Visible = false;
+                labelCant.Visible = false;
+                cantidad.Visible = false;
+                addInexist.Visible = false;
+                listAdmin.Width = 787;
+                cn.Open();
+                string query = "select * from producto where stock < 10";
+                MySqlDataReader row;
+                row = cn.ExecuteReader(query);
+                listAdmin.Columns.Add("id_producto", "Id", 50);
+                listAdmin.Columns.Add("nombre", "Nombre", 200);
+                listAdmin.Columns.Add("precio_por_detalle", "Precio por Detalle", 200);
+                listAdmin.Columns.Add("precio_por_mayor", "Precio por Mayor", 200);
+                listAdmin.Columns.Add("stock", "Cantidad", 130);
+                if (row.HasRows)
+                {
+                    while (row.Read())
+                    {
+                        if (row["deleted_at"].ToString() == "")
+                        {
+                            listAdmin.Items.Add(new ListViewItem(new[] { row["id_producto"].ToString(), row["nombre"].ToString(), row["precio_por_detalle"].ToString(), row["precio_por_mayor"].ToString(), row["stock"].ToString() }));
+                        }
+                    }
+                }
+                cn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error al cargar productos");
+            }
+        }
         private void loadUsrs()
         {
             try
@@ -554,6 +596,28 @@ namespace Presentation
             {
                 e.Handled = true;
             }
+        }
+
+        private void stockCritico_CheckedChanged(object sender, EventArgs e)
+        {
+            if (stockCritico.Checked)
+            {
+                listAdmin.Clear();
+                loadStock();
+            }
+        }
+
+        private void caja_Click(object sender, EventArgs e)
+        {
+            Caja caja = new Caja();
+            caja.Show();
+        }
+
+        private void verVentas_Click(object sender, EventArgs e)
+        {
+            VentasView ventasView = new VentasView();
+            ventasView.Show();
+            ventasView.f1ref = this;
         }
     }
 }

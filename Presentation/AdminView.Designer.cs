@@ -31,6 +31,8 @@ namespace Presentation
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.caja = new System.Windows.Forms.Button();
+            this.stockCritico = new System.Windows.Forms.RadioButton();
             this.proveedoresRadBtn = new System.Windows.Forms.RadioButton();
             this.comprasRadBtn = new System.Windows.Forms.RadioButton();
             this.usrRadBtn = new System.Windows.Forms.RadioButton();
@@ -51,11 +53,15 @@ namespace Presentation
             this.remove = new System.Windows.Forms.Button();
             this.price = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.verVentas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.verVentas);
+            this.panel1.Controls.Add(this.caja);
+            this.panel1.Controls.Add(this.stockCritico);
             this.panel1.Controls.Add(this.proveedoresRadBtn);
             this.panel1.Controls.Add(this.comprasRadBtn);
             this.panel1.Controls.Add(this.usrRadBtn);
@@ -66,6 +72,28 @@ namespace Presentation
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(148, 527);
             this.panel1.TabIndex = 0;
+            // 
+            // caja
+            // 
+            this.caja.Location = new System.Drawing.Point(12, 203);
+            this.caja.Name = "caja";
+            this.caja.Size = new System.Drawing.Size(121, 33);
+            this.caja.TabIndex = 15;
+            this.caja.Text = "Informe Caja";
+            this.caja.UseVisualStyleBackColor = true;
+            this.caja.Click += new System.EventHandler(this.caja_Click);
+            // 
+            // stockCritico
+            // 
+            this.stockCritico.Appearance = System.Windows.Forms.Appearance.Button;
+            this.stockCritico.Location = new System.Drawing.Point(12, 165);
+            this.stockCritico.Name = "stockCritico";
+            this.stockCritico.Size = new System.Drawing.Size(121, 32);
+            this.stockCritico.TabIndex = 13;
+            this.stockCritico.Text = "Stock Critico";
+            this.stockCritico.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.stockCritico.UseVisualStyleBackColor = true;
+            this.stockCritico.CheckedChanged += new System.EventHandler(this.stockCritico_CheckedChanged);
             // 
             // proveedoresRadBtn
             // 
@@ -261,6 +289,16 @@ namespace Presentation
             this.label2.TabIndex = 14;
             this.label2.Text = "Precio unitario compra:";
             // 
+            // verVentas
+            // 
+            this.verVentas.Location = new System.Drawing.Point(12, 242);
+            this.verVentas.Name = "verVentas";
+            this.verVentas.Size = new System.Drawing.Size(121, 33);
+            this.verVentas.TabIndex = 16;
+            this.verVentas.Text = "Ver Ventas";
+            this.verVentas.UseVisualStyleBackColor = true;
+            this.verVentas.Click += new System.EventHandler(this.verVentas_Click);
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -314,5 +352,8 @@ namespace Presentation
         private System.Windows.Forms.TextBox price;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton proveedoresRadBtn;
+        private System.Windows.Forms.RadioButton stockCritico;
+        private System.Windows.Forms.Button caja;
+        private System.Windows.Forms.Button verVentas;
     }
 }

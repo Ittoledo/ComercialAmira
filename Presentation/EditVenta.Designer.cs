@@ -1,7 +1,7 @@
 ﻿
 namespace Presentation
 {
-    partial class EditCompra
+    partial class EditVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -39,75 +39,68 @@ namespace Presentation
             // 
             // cantidad
             // 
-            this.cantidad.Location = new System.Drawing.Point(147, 38);
+            this.cantidad.Location = new System.Drawing.Point(154, 48);
             this.cantidad.Name = "cantidad";
             this.cantidad.Size = new System.Drawing.Size(122, 23);
-            this.cantidad.TabIndex = 73;
-            this.cantidad.TextChanged += new System.EventHandler(this.cantidad_TextChanged);
-            this.cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantidad_KeyPress);
+            this.cantidad.TabIndex = 79;
             // 
             // precio
             // 
-            this.precio.Location = new System.Drawing.Point(147, 9);
+            this.precio.Location = new System.Drawing.Point(154, 19);
             this.precio.Name = "precio";
             this.precio.Size = new System.Drawing.Size(122, 23);
-            this.precio.TabIndex = 72;
-            this.precio.TextChanged += new System.EventHandler(this.precio_TextChanged);
-            this.precio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.precio_KeyPress);
+            this.precio.TabIndex = 78;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 41);
+            this.label6.Location = new System.Drawing.Point(19, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 15);
-            this.label6.TabIndex = 67;
+            this.label6.TabIndex = 77;
             this.label6.Text = "Cantidad:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 12);
+            this.label5.Location = new System.Drawing.Point(19, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 15);
-            this.label5.TabIndex = 66;
+            this.label5.TabIndex = 76;
             this.label5.Text = "Precio:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // cancelar
             // 
-            this.cancelar.Location = new System.Drawing.Point(154, 75);
+            this.cancelar.Location = new System.Drawing.Point(161, 85);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(75, 23);
-            this.cancelar.TabIndex = 61;
+            this.cancelar.TabIndex = 75;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = true;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // aceptEdit
             // 
-            this.aceptEdit.Location = new System.Drawing.Point(49, 75);
+            this.aceptEdit.Location = new System.Drawing.Point(56, 85);
             this.aceptEdit.Name = "aceptEdit";
             this.aceptEdit.Size = new System.Drawing.Size(75, 23);
-            this.aceptEdit.TabIndex = 60;
+            this.aceptEdit.TabIndex = 74;
             this.aceptEdit.Text = "Aceptar";
             this.aceptEdit.UseVisualStyleBackColor = true;
-            this.aceptEdit.Click += new System.EventHandler(this.aceptEdit_Click);
             // 
-            // EditCompra
+            // EditVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 113);
+            this.ClientSize = new System.Drawing.Size(288, 123);
             this.Controls.Add(this.cantidad);
             this.Controls.Add(this.precio);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptEdit);
-            this.Name = "EditCompra";
-            this.Text = "EditCompra";
+            this.Name = "EditVenta";
+            this.Text = "EditVenta";
+            this.Load += new System.EventHandler(this.EditProd_Load);
             this.Shown += new System.EventHandler(this.EditProd_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
