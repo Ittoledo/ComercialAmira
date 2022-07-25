@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Connection_DB;
+using Presentation;
+using System.Security.Cryptography;
 
 namespace Presentation
 {
@@ -25,62 +27,67 @@ namespace Presentation
             {
                 if (usrTextBox.Text != "" && passTextBox.Text != "")
                 {
-                    cn.Open();
-                    string query = "select rut_usuario, id_tipo_usuario,nombre_usuario,apellido_usuario from usuario where rut_usuario = '" + usrTextBox.Text + "' AND contrasena = '" + passTextBox.Text + "'";
-                    MySqlDataReader row;
-                    row = cn.ExecuteReader(query);
-                    if (row.HasRows)
+
+                    if (Metodos.ValidaRut(usrTextBox.Text))
                     {
-                        while (row.Read())
+                        cn.Open();
+                        string query = "select rut_usuario, id_tipo_usuario,nombre_usuario,apellido_usuario from usuario where rut_usuario = '" + usrTextBox.Text + "' AND contrasena = '" + Metodos.EncryptPlainTextToCipherText(passTextBox.Text) + "'";
+                        MySqlDataReader row;
+                        row = cn.ExecuteReader(query);
+                        if (row.HasRows)
                         {
-                            rut = row["rut_usuario"].ToString();
-                            id = row["id_tipo_usuario"].ToString();
-                            nombre = row["nombre_usuario"].ToString();
-                            apellido = row["apellido_usuario"].ToString();
-                        }
-                        MessageBox.Show("Bienvenido " + nombre + " " + apellido);
-                        if (id == "1")
-                        {
-                            cn.Close();
-
-                            this.Hide();
-                            foreach (Form frm in Application.OpenForms)
+                            while (row.Read())
                             {
-                                if (frm is AdminView)
-                                {
-                                    frm.Show();
-                                    return;
-                                }
+                                rut = row["rut_usuario"].ToString();
+                                id = row["id_tipo_usuario"].ToString();
+                                nombre = row["nombre_usuario"].ToString();
+                                apellido = row["apellido_usuario"].ToString();
                             }
+                            MessageBox.Show("Bienvenido " + nombre + " " + apellido);
+                            if (id == "1")
+                            {
+                                cn.Close();
 
-                            AdminView adminView = new AdminView();
-                            adminView.titleAdminView = nombre + " " + apellido;
-                            adminView.id = rut;
-                            adminView.Show();
+                                this.Hide();
+                                foreach (Form frm in Application.OpenForms)
+                                {
+                                    if (frm is AdminView)
+                                    {
+                                        frm.Show();
+                                        return;
+                                    }
+                                }
+
+                                AdminView adminView = new AdminView();
+                                adminView.titleAdminView = nombre + " " + apellido;
+                                adminView.id = rut;
+                                adminView.Show();
+                            }
+                            else
+                            {
+                                cn.Close();
+
+                                this.Hide();
+                                foreach (Form frm in Application.OpenForms)
+                                {
+                                    if (frm is UserView)
+                                    {
+                                        frm.Show();
+                                        return;
+                                    }
+                                }
+
+                                UserView userView = new UserView();
+                                userView.load(usrTextBox.Text);
+                                userView.Show();
+                            }
                         }
                         else
                         {
-                            cn.Close();
-
-                            this.Hide();
-                            foreach (Form frm in Application.OpenForms)
-                            {
-                                if (frm is UserView)
-                                {
-                                    frm.Show();
-                                    return;
-                                }
-                            }
-
-                            UserView userView = new UserView();
-                            userView.load(usrTextBox.Text);
-                            userView.Show();
+                            MessageBox.Show("Usuario o Contraseña incorrectos");
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Usuario o Contraseña incorrectos");
-                    }
+                    else MessageBox.Show("Rut Invalido");
                 }
             }
             catch

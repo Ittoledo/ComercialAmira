@@ -15,6 +15,7 @@ namespace Presentation
     public partial class EditProd : Form
     {
         public string prod;
+        public string rutUser;
         public AdminView f1ref;
         Connection cn = new Connection();
         List<ComboBoxPairs> comboSource = new List<ComboBoxPairs>();
@@ -140,12 +141,41 @@ namespace Presentation
                     cn.ExecuteReader(query);
                     cn.Close();
                     f1ref.actualizaLista();
+                    realizaAjuste();
                     this.Close();
                 }
             }
             catch
             {
                 MessageBox.Show("Error al actualizar");
+            }
+        }
+
+        private string getIdAjuste()
+        {
+            int retorno = 0;
+            cn.Open();
+            string query = "Select count(id_ajuste) from ajuste";
+            MySqlDataReader row = cn.ExecuteReader(query);
+            while (row.Read()) retorno = 1 + Convert.ToInt32(row[0].ToString());
+            cn.Close();
+            return retorno.ToString();
+        }
+        private void realizaAjuste()
+        {
+            try
+            {
+                string idAjuste = getIdAjuste();
+                cn.Open();
+
+                string query = "INSERT INTO ajuste(id_ajuste,id_tipo_ajuste,rut_usuario,id_producto,cantidad,fecha_hora_ajuste) " +
+                    "VALUES(" + idAjuste + ", 1, " + rutUser + ", " + idProd.Text + ", " + stock.Text + ", NOW())";
+                cn.ExecuteReader(query);
+                cn.Close();
+            }
+            catch
+            {
+
             }
         }
 
@@ -157,6 +187,51 @@ namespace Presentation
         private void EditProd_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ppcu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ppm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void stock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

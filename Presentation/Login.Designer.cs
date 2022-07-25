@@ -52,7 +52,7 @@ namespace Presentation
             // 
             this.usrTextBox.Location = new System.Drawing.Point(106, 62);
             this.usrTextBox.Name = "usrTextBox";
-            this.usrTextBox.PlaceholderText = "Usuario";
+            this.usrTextBox.PlaceholderText = "Usuario 1123456-1";
             this.usrTextBox.Size = new System.Drawing.Size(277, 23);
             this.usrTextBox.TabIndex = 1;
             this.usrTextBox.TextChanged += new System.EventHandler(this.usrTextBox_TextChanged);

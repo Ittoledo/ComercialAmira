@@ -81,8 +81,9 @@ namespace Presentation
             {
                 string idAjuste = getIdAjuste();
                 cn.Open();
-                string query = "INSERT INTO `ajuste`(`id_ajuste`,`id_tipo_ajuste`,`rut_usuario`,`id_producto`,`cantidad`,`fecha_hora_ajuste`) "+
-                    "VALUES('" + idAjuste + "', '4', '" + rutUser + "', '" + idProd.Text + "', '" + stock.Text + "', 'now()')";
+
+                string query = "INSERT INTO ajuste(id_ajuste,id_tipo_ajuste,rut_usuario,id_producto,cantidad,fecha_hora_ajuste) " +
+                    "VALUES(" + idAjuste + ", 2, " + rutUser + ", " + idProd.Text + ", " + stock.Text + ", NOW())";
                 cn.ExecuteReader(query);
                 cn.Close();
             }
@@ -99,10 +100,32 @@ namespace Presentation
                 if (validacionIngreso())
                 {
                     ComboBoxPairs cbp = (ComboBoxPairs)tipoProd.SelectedItem;
+                    bool validacion = true;
                     string idTipo = cbp.idCat;
+                    string query = "SELECT * from producto where id_producto=" + idProd.Text;
                     cn.Open();
-                    string query = "INSERT INTO `producto`(`id_producto`, `cod_categoria`, `nombre`, `descripcion`, `precio_por_detalle`, `precio_por_mayor`, `stock`) " +
+                    MySqlDataReader row = cn.ExecuteReader(query);
+                    if(row.HasRows)
+                    {
+                        while(row.Read())
+                        {
+                            query = "UPDATE `producto` SET " +
+                                "`cod_categoria`='" + idTipo + "'," +
+                                "`nombre`='" + nombre.Text + "'," +
+                                "`descripcion`='" + descripcion.Text + "'," +
+                                "`precio_por_detalle`='" + ppcu.Text + "'," +
+                                "`precio_por_mayor`='" + ppm.Text + "'," +
+                                "`stock`='" + stock.Text + "', deleted_at=NULL" + " WHERE id_producto=" + idProd.Text;
+                        }
+                        validacion = false;
+                    }
+                    cn.Close();
+                    cn.Open();
+                    if (validacion)
+                    {
+                        query = "INSERT INTO `producto`(`id_producto`, `cod_categoria`, `nombre`, `descripcion`, `precio_por_detalle`, `precio_por_mayor`, `stock`) " +
                         "VALUES('" + idProd.Text + "', '" + idTipo + "', '" + nombre.Text + "', '" + descripcion.Text + "', '" + ppcu.Text + "', '" + ppm.Text + "', '" + stock.Text + "')";
+                    }
                     cn.ExecuteReader(query);
                     cn.Close();
                     realizaAjuste();
@@ -190,6 +213,51 @@ namespace Presentation
                 insertarCat(idCat.ToString(), input);
             }
 
+        }
+
+        private void ppcu_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ppm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void stock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

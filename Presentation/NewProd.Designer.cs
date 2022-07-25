@@ -138,6 +138,7 @@ namespace Presentation
             this.ppcu.Name = "ppcu";
             this.ppcu.Size = new System.Drawing.Size(122, 23);
             this.ppcu.TabIndex = 10;
+            this.ppcu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ppcu_KeyPress);
             // 
             // ppm
             // 
@@ -145,6 +146,7 @@ namespace Presentation
             this.ppm.Name = "ppm";
             this.ppm.Size = new System.Drawing.Size(122, 23);
             this.ppm.TabIndex = 11;
+            this.ppm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ppm_KeyPress);
             // 
             // stock
             // 
@@ -152,6 +154,7 @@ namespace Presentation
             this.stock.Name = "stock";
             this.stock.Size = new System.Drawing.Size(122, 23);
             this.stock.TabIndex = 12;
+            this.stock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.stock_KeyPress);
             // 
             // tipoProd
             // 

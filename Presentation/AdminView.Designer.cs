@@ -29,8 +29,10 @@ namespace Presentation
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ventasRadBtn = new System.Windows.Forms.RadioButton();
+            this.proveedoresRadBtn = new System.Windows.Forms.RadioButton();
+            this.comprasRadBtn = new System.Windows.Forms.RadioButton();
             this.usrRadBtn = new System.Windows.Forms.RadioButton();
             this.prodRadBtn = new System.Windows.Forms.RadioButton();
             this.exitBtn = new System.Windows.Forms.Button();
@@ -40,14 +42,22 @@ namespace Presentation
             this.addBtn = new System.Windows.Forms.Button();
             this.editBtn = new System.Windows.Forms.Button();
             this.delBtn = new System.Windows.Forms.Button();
-            this.comprasRadBtn = new System.Windows.Forms.RadioButton();
+            this.listAdmin2 = new System.Windows.Forms.ListView();
+            this.add = new System.Windows.Forms.Button();
+            this.addInexist = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cantidad = new System.Windows.Forms.TextBox();
+            this.labelCant = new System.Windows.Forms.Label();
+            this.remove = new System.Windows.Forms.Button();
+            this.price = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.proveedoresRadBtn);
             this.panel1.Controls.Add(this.comprasRadBtn);
-            this.panel1.Controls.Add(this.ventasRadBtn);
             this.panel1.Controls.Add(this.usrRadBtn);
             this.panel1.Controls.Add(this.prodRadBtn);
             this.panel1.Controls.Add(this.exitBtn);
@@ -57,17 +67,29 @@ namespace Presentation
             this.panel1.Size = new System.Drawing.Size(148, 527);
             this.panel1.TabIndex = 0;
             // 
-            // ventasRadBtn
+            // proveedoresRadBtn
             // 
-            this.ventasRadBtn.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ventasRadBtn.Location = new System.Drawing.Point(12, 88);
-            this.ventasRadBtn.Name = "ventasRadBtn";
-            this.ventasRadBtn.Size = new System.Drawing.Size(121, 32);
-            this.ventasRadBtn.TabIndex = 10;
-            this.ventasRadBtn.Text = "Ventas";
-            this.ventasRadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ventasRadBtn.UseVisualStyleBackColor = true;
-            this.ventasRadBtn.CheckedChanged += new System.EventHandler(this.ventasRadBtn_CheckedChanged);
+            this.proveedoresRadBtn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.proveedoresRadBtn.Location = new System.Drawing.Point(12, 126);
+            this.proveedoresRadBtn.Name = "proveedoresRadBtn";
+            this.proveedoresRadBtn.Size = new System.Drawing.Size(121, 32);
+            this.proveedoresRadBtn.TabIndex = 12;
+            this.proveedoresRadBtn.Text = "Proveedores";
+            this.proveedoresRadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.proveedoresRadBtn.UseVisualStyleBackColor = true;
+            this.proveedoresRadBtn.CheckedChanged += new System.EventHandler(this.proveedoresRadBtn_CheckedChanged);
+            // 
+            // comprasRadBtn
+            // 
+            this.comprasRadBtn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.comprasRadBtn.Location = new System.Drawing.Point(12, 88);
+            this.comprasRadBtn.Name = "comprasRadBtn";
+            this.comprasRadBtn.Size = new System.Drawing.Size(121, 32);
+            this.comprasRadBtn.TabIndex = 11;
+            this.comprasRadBtn.Text = "Compras";
+            this.comprasRadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.comprasRadBtn.UseVisualStyleBackColor = true;
+            this.comprasRadBtn.CheckedChanged += new System.EventHandler(this.comprasRadBtn_CheckedChanged);
             // 
             // usrRadBtn
             // 
@@ -160,23 +182,98 @@ namespace Presentation
             this.delBtn.UseVisualStyleBackColor = true;
             this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
             // 
-            // comprasRadBtn
+            // listAdmin2
             // 
-            this.comprasRadBtn.Appearance = System.Windows.Forms.Appearance.Button;
-            this.comprasRadBtn.Location = new System.Drawing.Point(12, 126);
-            this.comprasRadBtn.Name = "comprasRadBtn";
-            this.comprasRadBtn.Size = new System.Drawing.Size(121, 32);
-            this.comprasRadBtn.TabIndex = 11;
-            this.comprasRadBtn.Text = "Compras";
-            this.comprasRadBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.comprasRadBtn.UseVisualStyleBackColor = true;
-            this.comprasRadBtn.CheckedChanged += new System.EventHandler(this.comprasRadBtn_CheckedChanged);
+            this.listAdmin2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listAdmin2.HideSelection = false;
+            this.listAdmin2.Location = new System.Drawing.Point(591, 12);
+            this.listAdmin2.MultiSelect = false;
+            this.listAdmin2.Name = "listAdmin2";
+            this.listAdmin2.Size = new System.Drawing.Size(350, 466);
+            this.listAdmin2.TabIndex = 6;
+            this.listAdmin2.UseCompatibleStateImageBehavior = false;
+            // 
+            // add
+            // 
+            this.add.Location = new System.Drawing.Point(507, 200);
+            this.add.Name = "add";
+            this.add.Size = new System.Drawing.Size(78, 23);
+            this.add.TabIndex = 7;
+            this.add.Text = ">>";
+            this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
+            // 
+            // addInexist
+            // 
+            this.addInexist.Location = new System.Drawing.Point(507, 277);
+            this.addInexist.Name = "addInexist";
+            this.addInexist.Size = new System.Drawing.Size(78, 42);
+            this.addInexist.TabIndex = 8;
+            this.addInexist.Text = "Agregar Inexistente";
+            this.addInexist.UseVisualStyleBackColor = true;
+            this.addInexist.Click += new System.EventHandler(this.addInexist_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // cantidad
+            // 
+            this.cantidad.Location = new System.Drawing.Point(507, 106);
+            this.cantidad.Name = "cantidad";
+            this.cantidad.Size = new System.Drawing.Size(78, 23);
+            this.cantidad.TabIndex = 10;
+            this.cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantidad_KeyPress);
+            // 
+            // labelCant
+            // 
+            this.labelCant.AutoSize = true;
+            this.labelCant.Location = new System.Drawing.Point(517, 88);
+            this.labelCant.Name = "labelCant";
+            this.labelCant.Size = new System.Drawing.Size(58, 15);
+            this.labelCant.TabIndex = 11;
+            this.labelCant.Text = "Cantidad:";
+            // 
+            // remove
+            // 
+            this.remove.Location = new System.Drawing.Point(507, 229);
+            this.remove.Name = "remove";
+            this.remove.Size = new System.Drawing.Size(78, 23);
+            this.remove.TabIndex = 12;
+            this.remove.Text = "<<";
+            this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
+            // 
+            // price
+            // 
+            this.price.Location = new System.Drawing.Point(507, 171);
+            this.price.Name = "price";
+            this.price.Size = new System.Drawing.Size(78, 23);
+            this.price.TabIndex = 13;
+            this.price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.price_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(507, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 30);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Precio unitario compra:";
             // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 527);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.price);
+            this.Controls.Add(this.remove);
+            this.Controls.Add(this.labelCant);
+            this.Controls.Add(this.cantidad);
+            this.Controls.Add(this.addInexist);
+            this.Controls.Add(this.add);
+            this.Controls.Add(this.listAdmin2);
             this.Controls.Add(this.delBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.addBtn);
@@ -206,7 +303,16 @@ namespace Presentation
         private System.Windows.Forms.RadioButton prodRadBtn;
         private System.Windows.Forms.RadioButton usrRadBtn;
         private System.Windows.Forms.ColumnHeader idProd;
-        private System.Windows.Forms.RadioButton ventasRadBtn;
         private System.Windows.Forms.RadioButton comprasRadBtn;
+        private System.Windows.Forms.ListView listAdmin2;
+        private System.Windows.Forms.Button add;
+        private System.Windows.Forms.Button addInexist;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox cantidad;
+        private System.Windows.Forms.Label labelCant;
+        private System.Windows.Forms.Button remove;
+        private System.Windows.Forms.TextBox price;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton proveedoresRadBtn;
     }
 }

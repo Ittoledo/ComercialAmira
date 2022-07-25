@@ -70,114 +70,117 @@ namespace Presentation
             // tipoProd
             // 
             this.tipoProd.FormattingEnabled = true;
-            this.tipoProd.Location = new System.Drawing.Point(143, 43);
+            this.tipoProd.Location = new System.Drawing.Point(147, 47);
             this.tipoProd.Name = "tipoProd";
             this.tipoProd.Size = new System.Drawing.Size(122, 23);
-            this.tipoProd.TabIndex = 29;
+            this.tipoProd.TabIndex = 59;
             // 
             // stock
             // 
-            this.stock.Location = new System.Drawing.Point(143, 188);
+            this.stock.Location = new System.Drawing.Point(147, 192);
             this.stock.Name = "stock";
             this.stock.Size = new System.Drawing.Size(122, 23);
-            this.stock.TabIndex = 28;
+            this.stock.TabIndex = 58;
+            this.stock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.stock_KeyPress);
             // 
             // ppm
             // 
-            this.ppm.Location = new System.Drawing.Point(143, 159);
+            this.ppm.Location = new System.Drawing.Point(147, 163);
             this.ppm.Name = "ppm";
             this.ppm.Size = new System.Drawing.Size(122, 23);
-            this.ppm.TabIndex = 27;
+            this.ppm.TabIndex = 57;
+            this.ppm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ppm_KeyPress);
             // 
             // ppcu
             // 
-            this.ppcu.Location = new System.Drawing.Point(143, 130);
+            this.ppcu.Location = new System.Drawing.Point(147, 134);
             this.ppcu.Name = "ppcu";
             this.ppcu.Size = new System.Drawing.Size(122, 23);
-            this.ppcu.TabIndex = 26;
+            this.ppcu.TabIndex = 56;
+            this.ppcu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ppcu_KeyPress);
             // 
             // descripcion
             // 
-            this.descripcion.Location = new System.Drawing.Point(143, 101);
+            this.descripcion.Location = new System.Drawing.Point(147, 105);
             this.descripcion.Name = "descripcion";
             this.descripcion.Size = new System.Drawing.Size(122, 23);
-            this.descripcion.TabIndex = 25;
+            this.descripcion.TabIndex = 55;
             // 
             // nombre
             // 
-            this.nombre.Location = new System.Drawing.Point(143, 72);
+            this.nombre.Location = new System.Drawing.Point(147, 76);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(122, 23);
-            this.nombre.TabIndex = 24;
+            this.nombre.TabIndex = 54;
             // 
             // idProd
             // 
-            this.idProd.Location = new System.Drawing.Point(143, 14);
+            this.idProd.Location = new System.Drawing.Point(147, 18);
             this.idProd.Name = "idProd";
             this.idProd.Size = new System.Drawing.Size(122, 23);
-            this.idProd.TabIndex = 23;
+            this.idProd.TabIndex = 53;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 191);
+            this.label7.Location = new System.Drawing.Point(12, 195);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 15);
-            this.label7.TabIndex = 22;
+            this.label7.TabIndex = 52;
             this.label7.Text = "Cantidad:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 162);
+            this.label6.Location = new System.Drawing.Point(12, 166);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 15);
-            this.label6.TabIndex = 21;
+            this.label6.TabIndex = 51;
             this.label6.Text = "Precio por Mayor:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 133);
+            this.label5.Location = new System.Drawing.Point(12, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 15);
-            this.label5.TabIndex = 20;
+            this.label5.TabIndex = 50;
             this.label5.Text = "Precio por Unidad:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 104);
+            this.label4.Location = new System.Drawing.Point(12, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 15);
-            this.label4.TabIndex = 19;
+            this.label4.TabIndex = 49;
             this.label4.Text = "Descripcion:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 75);
+            this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
-            this.label3.TabIndex = 18;
+            this.label3.TabIndex = 48;
             this.label3.Text = "Nombre:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 46);
+            this.label2.Location = new System.Drawing.Point(12, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 15);
-            this.label2.TabIndex = 17;
+            this.label2.TabIndex = 47;
             this.label2.Text = "Tipo Producto:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 17);
+            this.label1.Location = new System.Drawing.Point(12, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 16;
+            this.label1.TabIndex = 46;
             this.label1.Text = "Id Producto:";
             // 
             // EditProd
@@ -185,8 +188,6 @@ namespace Presentation
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 273);
-            this.Controls.Add(this.cancelar);
-            this.Controls.Add(this.aceptEdit);
             this.Controls.Add(this.tipoProd);
             this.Controls.Add(this.stock);
             this.Controls.Add(this.ppm);
@@ -201,6 +202,8 @@ namespace Presentation
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.aceptEdit);
             this.Name = "EditProd";
             this.Text = "Editar Producto";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditProd_FormClosed);
